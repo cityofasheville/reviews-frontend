@@ -80,6 +80,7 @@ class Navbar extends React.Component {
                     item.external ? (
                       <a
                         href={item.href}
+                        target="_blank"
                         className={item.active ? 'active' : ''}
                         alt={this.translateMenuItem(item.defaultText)}
                         key={item.defaultText}
@@ -138,6 +139,7 @@ class Navbar extends React.Component {
                         item.external ? (
                           <a
                             href={item.href}
+                            target="_blank"
                             className={item.active ? 'active' : ''}
                             alt={this.translateMenuItem(item.defaultText)}
                             key={item.defaultText}
