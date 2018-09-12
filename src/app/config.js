@@ -40,6 +40,7 @@ const config = {
       href: '/about',
       active: false,
       defaultText: 'About',
+      external: false, // if links to external page not part of app
       translations: [
         {
           language: 'English',

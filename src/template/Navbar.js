@@ -77,15 +77,29 @@ class Navbar extends React.Component {
                 </div> */}
                 {
                   config.menu_items.map(item => (
-                    <Link
-                      to={item.href}
-                      className={item.active ? 'active' : ''}
-                      alt={this.translateMenuItem(item.defaultText)}
-                      key={item.defaultText}
-                    >
-                      {item.icon ? <Icon path={item.icon} size={24} />
-                        : this.translateMenuItem(item.defaultText)}
-                    </Link>))
+                    item.external ? (
+                      <a
+                        href={item.href}
+                        className={item.active ? 'active' : ''}
+                        alt={this.translateMenuItem(item.defaultText)}
+                        key={item.defaultText}
+                      >
+                        {item.icon ? <Icon path={item.icon} size={24} />
+                          : this.translateMenuItem(item.defaultText)}
+                      </a>
+                    )
+                      : (
+                        <Link
+                          to={item.href}
+                          className={item.active ? 'active' : ''}
+                          alt={this.translateMenuItem(item.defaultText)}
+                          key={item.defaultText}
+                        >
+                          {item.icon ? <Icon path={item.icon} size={24} />
+                            : this.translateMenuItem(item.defaultText)}
+                        </Link>
+                      )
+                  ))
                 }
                 {config.authControl && <AuthControl />}
               </nav>
@@ -120,14 +134,29 @@ class Navbar extends React.Component {
                 {
                   config.menu_items.map(item => (
                     <li key={`${item.defaultText}`}>
-                      <Link
-                        to={item.href}
-                        className={item.active ? 'active' : ''}
-                        alt={this.translateMenuItem(item.defaultText)}
-                      >
-                        {item.icon ? <Icon path={item.icon} size={24} />
-                          : this.translateMenuItem(item.defaultText)}
-                      </Link>
+                      {
+                        item.external ? (
+                          <a
+                            href={item.href}
+                            className={item.active ? 'active' : ''}
+                            alt={this.translateMenuItem(item.defaultText)}
+                            key={item.defaultText}
+                          >
+                            {item.icon ? <Icon path={item.icon} size={24} />
+                              : this.translateMenuItem(item.defaultText)}
+                          </a>
+                        )
+                          : (
+                            <Link
+                              to={item.href}
+                              className={item.active ? 'active' : ''}
+                              alt={this.translateMenuItem(item.defaultText)}
+                            >
+                              {item.icon ? <Icon path={item.icon} size={24} />
+                                : this.translateMenuItem(item.defaultText)}
+                            </Link>
+                          )
+                      }
                     </li>
                   ))
                 }
