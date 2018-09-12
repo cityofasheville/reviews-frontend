@@ -4,6 +4,7 @@ import About from 'app/About';
 import Home from 'app/Home';
 import Login from 'template/Login';
 import Logout from 'template/Logout';
+import 'app/styles/styles.css'; // import your global css here if using
 
 const mainRoutes = (
   <Switch>
