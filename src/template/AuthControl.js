@@ -4,8 +4,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import config from 'app/config';
-import { withLanguage } from './LanguageContext';
-import { withUser } from './UserContext';
+import { withLanguage } from 'template/LanguageContext';
+import { withUser } from 'template/UserContext';
 
 const saveLocationThenLogin = (location) => {
   localStorage.setItem('preLoginPathname', location.pathname);
