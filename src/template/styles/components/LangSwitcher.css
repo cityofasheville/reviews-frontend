@@ -1,0 +1,28 @@
+.LangSwitcher-dropdown {
+  border: 1px solid transparent;
+  width: 90px;
+}
+
+.LangSwitcher-dropdown {
+  padding-top: 30px;
+}
+
+.LangSwitcher-dropdown select {
+  background-color: #f6fcff;
+  color: #325d81;
+  border: none;
+  font-size: 17px;
+}
+
+.LangSwitcher-dropdown select:hover {
+  background: #d6dee4;
+}
+
+.LangSwitcher-dropdown select:focus {
+  border: 1px solid blue;
+}
+
+.LangSwitcher-dropdown option {
+    background-color: #f6fcff;
+    height: 100px;
+}

@@ -1,0 +1,39 @@
+footer.footer{
+	padding: 1rem 0;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  margin-top: 20px;
+  padding-top: 12px;
+  width: 100%;
+  color: #606479;
+  border-top: 1px solid #e7eaff;
+  background-color: #f6fcff;
+  text-align: center;
+  font-weight: lighter;
+  font-style: italic;
+}
+
+.footer a {
+  color: #4077a5;
+}
+
+.clear-footer{
+    display: block;
+    padding: 20px;
+    height: 100px;
+    width: 100%;
+}
+
+@media (max-width: 415px) {
+  .clear-footer{
+		display: none;
+	}
+	footer.footer{
+		position: relative;
+		padding: .5rem 0;
+		font-size: .85rem;
+	}
+}

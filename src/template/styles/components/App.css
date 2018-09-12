@@ -1,0 +1,65 @@
+h1, h2, body {
+  font-family: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.App {
+  color: #002e5c;
+}
+
+.App-logo {
+  width: 80px;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #f6fcff;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  border-bottom: 1px solid #c3ebff;
+}
+
+.App-header a {
+  text-decoration: none;
+  border: 1px solid transparent;
+}
+
+.App-header a:focus {
+  border: 1px solid blue;
+}
+
+.App-title-container {
+  display: inline-block;
+  margin-left: 10px;
+  vertical-align: top;
+  padding-top: 10px;
+}
+
+.App-title {
+  font-size: 2em;
+  font-weight: lighter;
+  color: #325d81;
+  margin: 0px;
+}
+
+.App-title:focus {
+  border: 1px solid blue;
+}
+
+.App-intro {
+  font-size: 1em;
+  color: #325d81;
+  font-weight: lighter;
+}
+
+@media (max-width: 415px) {
+  .App-logo {
+    width: 60px;
+    height: 45px;
+    padding-top: 15px;
+  }
+  .App-title {
+    font-size: 1.5em;
+  }
+}
+
