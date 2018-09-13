@@ -36,18 +36,6 @@ const config = {
     },
   ],
   menu_items: [ // main menu items -- empty this array if there should not be a menu
-    {
-      href: 'https:/goo.gl/forms/iM81K4CIW3ZC1LM22',
-      active: false,
-      defaultText: 'Give feedback',
-      external: true, // if links to external page not part of app
-      translations: [
-        {
-          language: 'English',
-          text: 'Give feedback',
-        },
-      ],
-    },
   ],
   // cognito settings
   loginURL: process.env.REACT_APP_COGNITO_LOGIN, // eslint-disable-line
