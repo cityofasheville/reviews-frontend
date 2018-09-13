@@ -54,8 +54,8 @@ const config = {
     },
   ],
   // cognito settings
-  loginURL: 'https://coa-web-2.auth.us-east-1.amazoncognito.com/login?response_type=code&client_id=2uu574tlad2ajk5hmj94fnjeva&redirect_uri=http://localhost:3000/login', // eslint-disable-line
-  logoutURL: 'https://coa-web-2.auth.us-east-1.amazoncognito.com/logout?client_id=2uu574tlad2ajk5hmj94fnjeva&logout_uri=http://localhost:3000/logout', // eslint-disable-line
+  loginURL: process.env.REACT_APP_COGNITO_LOGIN, // eslint-disable-line
+  logoutURL: process.env.REACT_APP_COGNITO_LOGOUT, // eslint-disable-line
   redirect_uri: 'http://localhost:3000/login', // eslint-disable-line
   loginText: {
     defaultText: 'Log in',
