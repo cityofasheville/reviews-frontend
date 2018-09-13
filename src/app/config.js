@@ -5,11 +5,11 @@ This file is how you configure the app in relation to the template. Do NOT edit 
 const config = {
   // main configurations
   appTitle: {
-    defaultText: 'A react app',
+    defaultText: 'Employee Check-in',
     translations: [
       {
         language: 'English',
-        text: 'A react app',
+        text: 'Employee Check-in',
       },
     ],
   },
@@ -22,9 +22,9 @@ const config = {
       },
     ],
   },
-  langSwitcher: true, // Set to false if you do NOT want language translation to be enabled
+  langSwitcher: false, // Set to false if you do NOT want language translation to be enabled
   authControl: true, // Set to false if you do NOT want authentication to be enabled
-  footer: true, // Set to false if you do NOT want footer to be shown
+  footer: false, // Set to false if you do NOT want footer to be shown
   languages: [ // languages for langSwitcher component
     {
       language: 'English',
@@ -36,22 +36,6 @@ const config = {
     },
   ],
   menu_items: [ // main menu items -- empty this array if there should not be a menu
-    {
-      href: '/about',
-      active: false,
-      defaultText: 'About',
-      external: false, // if links to external page not part of app
-      translations: [
-        {
-          language: 'English',
-          text: 'About',
-        },
-        {
-          language: 'Spanish',
-          text: 'Acerca de',
-        },
-      ],
-    },
   ],
   // cognito settings
   loginURL: process.env.REACT_APP_COGNITO_LOGIN, // eslint-disable-line
@@ -87,7 +71,7 @@ const config = {
   hasFeedbackForm: true,
   feedbackURL: 'https://docs.google.com/a/ashevillenc.gov/forms/d/e/1FAIpQLSdjNwOmoDY3PjQOVreeSL07zgI8otIIPWjY7BnejWMAjci8-w/viewform?c=0&w=1', // eslint-disable-line
   hasGitHubURL: true,
-  gitHubURL: 'https://github.com/cityofasheville/simplicity2',
+  gitHubURL: 'https://github.com/cityofasheville/reviews-frontend',
 
 };
 
