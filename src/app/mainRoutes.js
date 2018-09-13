@@ -9,7 +9,6 @@ import 'app/styles/styles.css'; // import your global css here if using
 const mainRoutes = (
   <Switch>
     <Route exact path="/" component={Home} />
-    <Route path="/about" component={About} />
     <Route path="/login" component={Login} />
     <Route path="/logout" component={Logout} />
   </Switch>

@@ -23,8 +23,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deploy-reviews-frontend": "aws s3 sync dist s3://reviews-frontend.ashevillenc.gov --delete",
-    "deploy-dev-reviews-frontend": "aws s3 sync dist s3://dev-reviews-frontend.ashevillenc.gov"
+    "deploy-reviews-frontend": "aws s3 sync build s3://reviews-frontend.ashevillenc.gov --delete",
+    "deploy-dev-reviews-frontend": "aws s3 sync build s3://dev-reviews-frontend.ashevillenc.gov --delete"
   },
   "devDependencies": {
     "eslint": "^5.4.0",
