@@ -65,7 +65,7 @@ class Navbar extends React.Component {
     if (this.state.windowWidth > 600) {
       return (
         <div className="Navbar-container">
-          {config.menu_items.length > 0
+          {(config.menu_items.length > 0 || config.authControl)
             && (
               <nav
                 className="Navbar-nav"
@@ -113,7 +113,7 @@ class Navbar extends React.Component {
     return (
       <div className="Navbar-container narrow">
         {config.langSwitcher && <LangSwitcher />}
-        {config.menu_items.length > 0
+        {(config.menu_items.length > 0 || config.authControl)
           && (
             <nav
               className={`Navbar-nav hamburger ${this.state.open ? 'open' : ''}`}

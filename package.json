@@ -6,11 +6,12 @@
     "apollo-cache-inmemory": "^1.2.9",
     "apollo-client": "^2.4.1",
     "apollo-link-http": "^1.5.4",
+    "dotenv": "^6.0.0",
     "graphql": "^14.0.0",
     "graphql-tag": "^2.9.2",
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
-    "query-string": "^6.1.0",
+    "query-string": "5",
     "react": "^16.4.2",
     "react-apollo": "^2.1.11",
     "react-dom": "^16.4.2",
@@ -22,7 +23,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy-reviews-frontend": "aws s3 sync dist s3://reviews-frontend.ashevillenc.gov --delete",
+    "deploy-dev-reviews-frontend": "aws s3 sync dist s3://dev-reviews-frontend.ashevillenc.gov"
   },
   "devDependencies": {
     "eslint": "^5.4.0",
