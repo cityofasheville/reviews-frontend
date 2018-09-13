@@ -6,7 +6,6 @@
     "apollo-cache-inmemory": "^1.2.9",
     "apollo-client": "^2.4.1",
     "apollo-link-http": "^1.5.4",
-    "dotenv": "^6.0.0",
     "graphql": "^14.0.0",
     "graphql-tag": "^2.9.2",
     "moment": "^2.22.2",
