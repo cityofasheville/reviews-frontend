@@ -15,7 +15,7 @@ const Home = (props) => {
     return (<div>Invalid user</div>);
   }
   return <div>Employee Home</div>;
-    //return (<EmployeeHome {...props} />);
+    // return (<EmployeeHome {...props} />);
 };
 
 export default withUser(Home);
