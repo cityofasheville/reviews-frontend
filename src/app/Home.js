@@ -1,6 +1,6 @@
 import React from 'react';
 import 'app/styles/components/Home.css';
-//import EmployeeHome from './EmployeeHome';
+import EmployeeHome from './EmployeeHome';
 import { withUser } from 'template/UserContext';
 
 const Home = (props) => {
@@ -14,8 +14,7 @@ const Home = (props) => {
   if (props.user.loggedIn && !props.user.email.trim().endsWith('ashevillenc.gov')) {
     return (<div>Invalid user</div>);
   }
-  return <div>Employee Home TEST</div>;
-    //return (<EmployeeHome {...props} />);
+  return (<EmployeeHome {...props} />);
 };
 
 export default withUser(Home);
