@@ -1,14 +1,21 @@
 import React from 'react';
-import example from 'app/assets/example.svg';
 import 'app/styles/components/Home.css';
+//import EmployeeHome from './EmployeeHome';
+import { withUser } from 'template/UserContext';
 
-const Home = () => (
-  <div>
-    <h1>
-      HOME PAGE
-      <img className="Home-example" src={example} alt="Example SVG"></img>
-    </h1>
-  </div>
-);
+const Home = (props) => {
+  if (!props.user.loggedIn) {
+    return (
+      <div>
+        Welcome to City of Asheville Employee Check-in. Please log in at top right.
+      </div>
+    );
+  }
+  if (props.user.loggedIn && !props.user.email.trim().endsWith('ashevillenc.gov')) {
+    return (<div>Invalid user</div>);
+  }
+  return <div>Employee Home</div>;
+    //return (<EmployeeHome {...props} />);
+};
 
-export default Home;
+export default withUser(Home);
