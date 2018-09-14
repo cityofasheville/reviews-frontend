@@ -69,6 +69,7 @@ class Login extends React.Component {
             if (this.state.isLoggedIn) {
               this.props.user.login();
               this.setUserInfo(this.props.userInfo.user);
+              localStorage.setItem('loggedIn', true);
               const priorPath = localStorage.getItem('preLoginPathname');
               if (priorPath) {
                 if (priorPath !== '/login') {
