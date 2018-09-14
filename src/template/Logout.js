@@ -42,6 +42,7 @@ class Logout extends React.Component {
           }, () => {
             if (!this.state.isLoggedIn) {
               this.props.user.logout();
+              localStorage.setItem('loggedIn', false);
               this.props.history.push('/');
             }
           });
