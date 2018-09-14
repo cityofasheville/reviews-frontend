@@ -14,7 +14,7 @@ const Home = (props) => {
   if (props.user.loggedIn && !props.user.email.trim().endsWith('ashevillenc.gov')) {
     return (<div>Invalid user</div>);
   }
-  return <div>Employee Home</div>;
+  return <div>Employee Home TEST</div>;
     //return (<EmployeeHome {...props} />);
 };
 
