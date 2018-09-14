@@ -75,8 +75,9 @@ class Login extends React.Component {
                   const priorSearch = localStorage.getItem('preLoginSearch');
                   if (priorSearch) {
                     this.props.history.push(`${priorPath}${priorSearch}`);
+                  } else {
+                    this.props.history.push(priorPath);
                   }
-                  this.props.history.push(priorPath);
                 }
               }
             }
