@@ -30,6 +30,13 @@ class Logout extends React.Component {
     };
   }
 
+  async logout() {
+    const {
+      user,
+    } = this.props;
+    await user.logout();
+  }
+
   render() {
     return (
       <Mutation
@@ -40,32 +47,38 @@ class Logout extends React.Component {
             message: data.logout.message,
             fail: data.logout.loggedIn,
           }, () => {
-            if (!this.state.isLoggedIn) {
-              this.props.user.logout();
+            const { isLoggedIn } = this.state;
+            const { history } = this.props;
+            if (!isLoggedIn) {
+              this.logout();
               localStorage.setItem('loggedIn', false);
-              this.props.history.push('/');
+              history.push('/');
             }
           });
         }}
       >
         {
-          (logout, { data, error }) => (
-            <div>
-              <LogoutCode
-                logout={logout}
-                loggedIn={this.state.isLoggedIn}
-              >
-                <div>
-                  {this.state.fail ? // eslint-disable-line
-                    <Error message={this.state.message} />
-                    : this.state.loggedIn ?
-                      <LoadingAnimation />
-                      : <div>You are logged out</div>
-                  }
-                </div>
-              </LogoutCode>
-            </div>
-          )
+          (logout, { data, error }) => {
+            const { isLoggedIn, message, fail } = this.state;
+            return (
+              <div>
+                <LogoutCode
+                  logout={logout}
+                  loggedIn={isLoggedIn}
+                >
+                  <div>
+                    {
+                      fail // eslint-disable-line no-nested-ternary
+                        ? <Error message={message} />
+                        : isLoggedIn
+                          ? <LoadingAnimation />
+                          : <div>You are logged out</div>
+                    }
+                  </div>
+                </LogoutCode>
+              </div>
+            );
+          }
         }
       </Mutation>
     );

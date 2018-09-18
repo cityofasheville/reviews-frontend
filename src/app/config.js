@@ -8,7 +8,7 @@ const config = {
     defaultText: 'Employee Check-in',
     translations: [
       {
-        language: 'English',
+        language: 'en', // use ISO codes
         text: 'Employee Check-in',
       },
     ],
@@ -17,7 +17,7 @@ const config = {
     defaultText: 'City of Asheville, NC',
     translations: [
       {
-        language: 'English',
+        language: 'en',
         text: 'City of Asheville, NC',
       },
     ],
@@ -27,11 +27,11 @@ const config = {
   footer: false, // Set to false if you do NOT want footer to be shown
   languages: [ // languages for langSwitcher component
     {
-      language: 'English',
+      language: 'en',
       label: 'English',
     },
     {
-      language: 'Spanish',
+      language: 'es',
       label: 'Espa\xF1ol',
     },
   ],
@@ -45,11 +45,11 @@ const config = {
     defaultText: 'Log in',
     translations: [
       {
-        language: 'English',
+        language: 'en',
         text: 'Log in',
       },
       {
-        language: 'Spanish',
+        language: 'es',
         text: 'Iniciar sesi\xF3n',
       },
     ],
@@ -58,11 +58,11 @@ const config = {
     defaultText: 'Log out',
     translations: [
       {
-        language: 'English',
+        language: 'en',
         text: 'Log out',
       },
       {
-        language: 'Spanish',
+        language: 'es',
         text: 'Cerrar sesi\xF3n',
       },
     ],

@@ -24,7 +24,6 @@ const App = () => (
               <Navbar />
             </header>
             <div className="container" id="content">
-              {/* {props.children} */}
               {mainRoutes}
             </div>
             {config.footer && <Footer />}

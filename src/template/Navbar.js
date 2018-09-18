@@ -36,8 +36,8 @@ class Navbar extends React.Component {
 
   toggleOpen(e) {
     e.preventDefault();
-    const prevOpen = this.state.open;
-    this.setState({ open: !prevOpen });
+    const { open } = this.state;
+    this.setState({ open: !open });
   }
 
   handleResize() {
@@ -45,10 +45,11 @@ class Navbar extends React.Component {
   }
 
   translateMenuItem(defaultText) {
+    const { language } = this.props;
     for (let i = 0; i < config.menu_items.length; i += 1) {
       if (config.menu_items[i].defaultText === defaultText) {
         for (let j = 0; j < config.menu_items[i].translations.length; j += 1) {
-          if (config.menu_items[i].translations[j].language === this.props.language.language) {
+          if (config.menu_items[i].translations[j].language === language.language) {
             return config.menu_items[i].translations[j].text;
           }
         }
@@ -58,11 +59,12 @@ class Navbar extends React.Component {
   }
 
   render() {
+    const { windowWidth, open } = this.state;
     let position = { top: 0, right: 0 };
     if (config.langSwitcher) {
       position = { top: 0, right: 90 };
     }
-    if (this.state.windowWidth > 600) {
+    if (windowWidth > 600) {
       return (
         <div className="Navbar-container">
           {(config.menu_items.length > 0 || config.authControl)
@@ -116,7 +118,7 @@ class Navbar extends React.Component {
         {(config.menu_items.length > 0 || config.authControl)
           && (
             <nav
-              className={`Navbar-nav hamburger ${this.state.open ? 'open' : ''}`}
+              className={`Navbar-nav hamburger ${open ? 'open' : ''}`}
               style={position}
               aria-label="main-menu"
             >
@@ -124,7 +126,7 @@ class Navbar extends React.Component {
                 className="dropdown-toggle"
                 type="button"
                 aria-haspopup="true"
-                aria-expanded={this.state.open}
+                aria-expanded={open}
                 aria-controls="menu"
                 aria-label="Navigation"
                 onClick={this.toggleOpen}

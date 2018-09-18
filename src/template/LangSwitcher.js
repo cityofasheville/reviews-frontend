@@ -17,6 +17,7 @@ const LangSwitcher = (props) => {
       );
     }
   }
+  const { language } = props;
   return (
     <div className="LangSwitcher-dropdown">
       <select
@@ -30,7 +31,7 @@ const LangSwitcher = (props) => {
             false,
           );
         }}
-        defaultValue={`${props.language.language}:${props.language.label}`}
+        defaultValue={`${language.language}:${language.label}`}
       >
         {
           config.languages.map(lang => (
