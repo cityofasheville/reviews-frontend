@@ -41,7 +41,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: this.props.user.loggedIn,
+      isLoggedIn: false,
       message: 'No message',
       fail: false,
     };
@@ -67,7 +67,7 @@ class Login extends React.Component {
             fail: !data.registerCode.loggedIn,
           }, () => {
             if (this.state.isLoggedIn) {
-              this.props.user.login();
+              // this.props.user.login();
               this.setUserInfo(this.props.userInfo.user);
               localStorage.setItem('loggedIn', true);
               const priorPath = localStorage.getItem('preLoginPathname');

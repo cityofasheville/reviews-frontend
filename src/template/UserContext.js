@@ -7,7 +7,6 @@ const UserContext = React.createContext();
 
 export default class UserProvider extends React.Component {
   state = {
-    loggedIn: false,
     address: null,
     birthdate: null,
     email: null,
@@ -33,15 +32,11 @@ export default class UserProvider extends React.Component {
     supervisor_id: null,
     supervisor: null,
     supervisor_email: null,
-    login: () => (
-      this.setState({loggedIn: true})
-    ),
     setUserInfo: userInfo => (
       this.setState((prevState) => (Object.assign( prevState, userInfo )))
     ),
     logout: () => (
       this.setState({
-        loggedIn: false,
         address: null,
         birthdate: null,
         email: null,
