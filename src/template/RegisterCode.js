@@ -6,11 +6,12 @@ import config from 'app/config';
 
 class RegisterCode extends React.Component {
   componentDidMount() {
-    if (!this.props.loggedIn) {
-      this.props.registerCode(
+    const { loggedIn, registerCode, code } = this.props;
+    if (!loggedIn) {
+      registerCode(
         {
           variables: {
-            code: this.props.code,
+            code,
             redirect_uri: config.redirect_uri,
           },
         }
@@ -19,7 +20,8 @@ class RegisterCode extends React.Component {
   }
 
   render() {
-    return this.props.children;
+    const { children } = this.props;
+    return children;
   }
 }
 

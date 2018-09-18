@@ -50,28 +50,30 @@ const getText = (loggedIn, language) => {
 
 class AuthControl extends React.Component {
   componentDidUpdate() {
+    const { user, data } = this.props;
     const loggedIn = localStorage.getItem('loggedIn') === 'true';
-    const skipping = !loggedIn || (loggedIn && this.props.user.email !== null);
-    if (!skipping && this.props.data !== undefined) {
-      if (this.props.data.user !== undefined) {
-        this.props.user.setUserInfo(this.props.data.user);
+    const skipping = !loggedIn || (loggedIn && user.email !== null);
+    if (!skipping && data !== undefined && data.error === undefined) {
+      if (data.user !== undefined) {
+        user.setUserInfo(data.user);
       }
     }
   }
 
   render() {
     const loggedIn = localStorage.getItem('loggedIn') === 'true';
+    const { language, location } = this.props;
     if (loggedIn) {
       return (
-        <a href={config.logoutURL}>{getText(true, this.props.language.language)}</a>
+        <a href={config.logoutURL}>{getText(true, language.language)}</a>
       );
     }
     return (
       <a
         href={config.loginURL}
-        onClick={() => saveLocationThenLogin(this.props.location)}
+        onClick={() => saveLocationThenLogin(location)}
       >
-        {getText(false, this.props.language.language)}
+        {getText(false, language.language)}
       </a>
     );
   }

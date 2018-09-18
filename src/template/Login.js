@@ -48,11 +48,20 @@ class Login extends React.Component {
   }
 
   async setUserInfo(userInfo) {
-    await this.props.user.setUserInfo(userInfo);
+    const {
+      user,
+    } = this.props;
+    await user.setUserInfo(userInfo);
   }
 
   render() {
-    const code = queryString.parse(this.props.location.search).code;
+    const {
+      location: {
+        search,
+      },
+      history,
+    } = this.props;
+    const { code } = queryString.parse(search);
     return (
       <Mutation
         mutation={REGISTER_CODE}
@@ -66,18 +75,19 @@ class Login extends React.Component {
             message: data.registerCode.message,
             fail: !data.registerCode.loggedIn,
           }, () => {
-            if (this.state.isLoggedIn) {
-              // this.props.user.login();
-              this.setUserInfo(this.props.userInfo.user);
+            const { isLoggedIn } = this.state;
+            const { userInfo } = this.props;
+            if (isLoggedIn) {
+              this.setUserInfo(userInfo.user);
               localStorage.setItem('loggedIn', true);
               const priorPath = localStorage.getItem('preLoginPathname');
               if (priorPath) {
                 if (priorPath !== '/login') {
                   const priorSearch = localStorage.getItem('preLoginSearch');
                   if (priorSearch) {
-                    this.props.history.push(`${priorPath}${priorSearch}`);
+                    history.push(`${priorPath}${priorSearch}`);
                   } else {
-                    this.props.history.push(priorPath);
+                    history.push(priorPath);
                   }
                 }
               }
@@ -86,26 +96,29 @@ class Login extends React.Component {
         }}
       >
         {
-          (registerCode, { data, error }) => (
-            <div>
-              <RegisterCode
-                registerCode={registerCode}
-                code={code}
-                loggedIn={this.state.loggedIn}
-              >
-                <div>
-                  {this.state.fail ? // eslint-disable-line
-                    <Error message={this.state.message} />
-                    : this.state.isLoggedIn
-                      ? (
-                        <div>You are logged In</div>
-                      )
-                      : <LoadingAnimation />
-                  }
-                </div>
-              </RegisterCode>
-            </div>
-          )
+          (registerCode, { data, error }) => {
+            const { isLoggedIn, message } = this.state;
+            return (
+              <div>
+                <RegisterCode
+                  registerCode={registerCode}
+                  code={code}
+                  loggedIn={isLoggedIn}
+                >
+                  <div>
+                    {this.state.fail ? // eslint-disable-line
+                      <Error message={message} />
+                      : isLoggedIn
+                        ? (
+                          <div>You are logged In</div>
+                        )
+                        : <LoadingAnimation />
+                    }
+                  </div>
+                </RegisterCode>
+              </div>
+            );
+          }
         }
       </Mutation>
     );

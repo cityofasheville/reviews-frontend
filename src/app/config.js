@@ -8,7 +8,7 @@ const config = {
     defaultText: 'A react app',
     translations: [
       {
-        language: 'English',
+        language: 'en', // use ISO codes
         text: 'A react app',
       },
     ],
@@ -17,7 +17,7 @@ const config = {
     defaultText: 'City of Asheville, NC',
     translations: [
       {
-        language: 'English',
+        language: 'en',
         text: 'City of Asheville, NC',
       },
     ],
@@ -27,11 +27,11 @@ const config = {
   footer: true, // Set to false if you do NOT want footer to be shown
   languages: [ // languages for langSwitcher component
     {
-      language: 'English',
+      language: 'en',
       label: 'English',
     },
     {
-      language: 'Spanish',
+      language: 'es',
       label: 'Espa\xF1ol',
     },
   ],
@@ -43,11 +43,11 @@ const config = {
       external: false, // if links to external page not part of app
       translations: [
         {
-          language: 'English',
+          language: 'en',
           text: 'About',
         },
         {
-          language: 'Spanish',
+          language: 'es',
           text: 'Acerca de',
         },
       ],
@@ -61,11 +61,11 @@ const config = {
     defaultText: 'Log in',
     translations: [
       {
-        language: 'English',
+        language: 'en',
         text: 'Log in',
       },
       {
-        language: 'Spanish',
+        language: 'es',
         text: 'Iniciar sesi\xF3n',
       },
     ],
@@ -74,11 +74,11 @@ const config = {
     defaultText: 'Log out',
     translations: [
       {
-        language: 'English',
+        language: 'en',
         text: 'Log out',
       },
       {
-        language: 'Spanish',
+        language: 'es',
         text: 'Cerrar sesi\xF3n',
       },
     ],

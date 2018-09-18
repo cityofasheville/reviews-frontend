@@ -6,31 +6,37 @@ import PropTypes from 'prop-types';
 
 // https://medium.com/@david.gilbertson/icons-as-react-components-de3e33cb8792
 
-const Icon = (props) => {
+const Icon = ({
+  verticalAlign,
+  color,
+  size,
+  viewBox,
+  path,
+}) => {
   const styles = {
     svg: {
       display: 'inline-block',
-      verticalAlign: props.verticalAlign,
+      verticalAlign,
     },
     path: {
-      fill: props.color || 'currentColor',
+      fill: color,
     },
   };
 
   return (
     <svg
       style={styles.svg}
-      width={`${props.size}px`}
-      height={`${props.size}px`}
-      viewBox={props.viewBox ? props.viewBox : "0 0 16 16"}
-      preserveAspectRatio='xMidYMid meet'
+      width={`${size}px`}
+      height={`${size}px`}
+      viewBox={viewBox}
+      preserveAspectRatio="xMidYMid meet"
     >
       <g>
-        {props.path.split(',').map((path, index) => (
+        {path.split(',').map((p, index) => (
           <path
             key={['path', index].join('_')}
             style={styles.path}
-            d={path}
+            d={p}
           >
           </path>
         ))}
@@ -50,6 +56,8 @@ Icon.propTypes = {
 Icon.defaultProps = {
   size: 16,
   verticalAlign: 'middle',
+  color: 'currentColor',
+  viewBox: '0 0 16 16',
 };
 
 export default Icon;

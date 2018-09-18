@@ -6,7 +6,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import config from 'app/config';
 
-const Error = props => (
+const Error = ({ message }) => (
   <div className="row">
     <div className="col-sm-12">
       <div className="alert alert-danger alert-sm">
@@ -34,7 +34,8 @@ const Error = props => (
           &nbsp;UTC
         </p>
         <p>
-          <span>Error details:&nbsp;</span>{props.message}
+          <span>Error details:&nbsp;</span>
+          {message}
         </p>
       </div>
     </div>
