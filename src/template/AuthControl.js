@@ -80,6 +80,9 @@ class AuthControl extends React.Component {
 }
 
 export default withRouter(withUser(withLanguage(graphql(GET_USER_INFO, {
+  options: {
+    fetchPolicy: 'network-only',
+  },
   skip: ownProps => (
     localStorage.getItem('loggedIn') !== 'true'
       || (localStorage.getItem('loggedIn') === 'true' && ownProps.user.email !== null)),
