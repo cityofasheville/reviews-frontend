@@ -1,18 +1,16 @@
 import React from 'react';
 import 'app/styles/components/Home.css';
-import EmployeeHome from './EmployeeHome';
+import EmployeeHome from 'app/EmployeeHome';
 import { withUser } from 'template/UserContext';
 
 const Home = (props) => {
-  if (!props.user.loggedIn) {
+  const loggedIn = localStorage.getItem('loggedIn') === 'true';
+  if (!loggedIn) {
     return (
       <div>
         Welcome to City of Asheville Employee Check-in. Please log in at top right.
       </div>
     );
-  }
-  if (props.user.loggedIn && !props.user.email.trim().endsWith('ashevillenc.gov')) {
-    return (<div>Invalid user</div>);
   }
   return (<EmployeeHome {...props} />);
 };

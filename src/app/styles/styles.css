@@ -5,3 +5,21 @@ This is a file for global css, if needed for your app.
 .container:first-of-type {
   padding: 15px;
 }
+
+.text-primary {
+  color: #4077a5 !important;
+}
+
+a {
+  text-decoration: none;
+  color: #4077a5;
+}
+
+a:focus, a:hover {
+  text-decoration: underline;
+  color: #325c80;
+}
+
+h1 {
+  font-weight: lighter;
+}
