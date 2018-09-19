@@ -50,7 +50,7 @@
     overflow: hidden;
 }
 
-.Navbar-nav .dropdown-menu {
+.Navbar-nav .Navbar-dropdown-menu {
     display: none;
 }
 
@@ -61,9 +61,10 @@
 .Navbar-nav.hamburger ul {
     position: absolute;
     right: 0;
+    z-index: 1000;
 }
 
-.Navbar-nav.hamburger button.dropdown-toggle {
+.Navbar-nav.hamburger button.Navbar-dropdown-toggle {
     float: right;
     margin-top: 22px;
     background: transparent;
@@ -71,11 +72,11 @@
     color: #325d81;
 }
 
-.Navbar-nav.hamburger button.dropdown-toggle:focus {
+.Navbar-nav.hamburger button.Navbar-dropdown-toggle:focus {
     border: 1px solid blue;
 }
 
-.Navbar-nav.hamburger button.dropdown-toggle:hover {
+.Navbar-nav.hamburger button.Navbar-dropdown-toggle:hover {
     background-color: #d6dee4;
 }
 
@@ -111,10 +112,16 @@
     margin-top: 58px;
 }
 
-.Navbar-nav.open .dropdown-menu {
+.Navbar-nav.open .Navbar-dropdown-menu {
     display: block;
 }
 
-.dropdown-toggle[aria-expanded="true"] + .dropdown-menu {
+.Navbar-dropdown-toggle[aria-expanded="true"] + .Navbar-dropdown-menu {
     display: block;
 }
+
+/* So no conflicts with Bootstrap */
+.Navbar-nav a {
+    -webkit-box-sizing: unset;
+    box-sizing: unset;
+  }

@@ -123,7 +123,7 @@ class Navbar extends React.Component {
               aria-label="main-menu"
             >
               <button
-                className="dropdown-toggle"
+                className="Navbar-dropdown-toggle"
                 type="button"
                 aria-haspopup="true"
                 aria-expanded={open}
@@ -133,7 +133,7 @@ class Navbar extends React.Component {
               >
                 <Icon path={IM_MENU3} size={32} />
               </button>
-              <ul className="dropdown-menu" id="menu" tabIndex="-1">
+              <ul className="Navbar-dropdown-menu" id="menu" tabIndex="-1">
                 {
                   config.menu_items.map(item => (
                     <li key={`${item.defaultText}`}>
