@@ -65,7 +65,6 @@ const ReviewContainer = ({ location }) => {
       {({ loading, error, data }) => {
         if (loading) return <LoadingAnimation />;
         if (error) return <Error message={error.message} />;
-        console.log('loggedInAs', data);
         const loggedInEmployee = data.employee;
         const { review } = data;
 

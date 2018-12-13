@@ -366,7 +366,7 @@ class Review extends React.Component {
                   </h1>
                   <a
                     className="pull-right"
-                    style={{ fontSize: '20px' }}
+                    style={{ fontSize: '20px', cursor: 'pointer' }}
                     onClick={() => this.handleOpenModal(submit)}
                   >
                     Printable Version
