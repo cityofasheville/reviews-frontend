@@ -55,7 +55,8 @@ class AuthControl extends React.Component {
     const skipping = !loggedIn || (loggedIn && user.email !== null);
     if (!skipping && data !== undefined && data.error === undefined) {
       if (data.user !== undefined) {
-        user.setUserInfo(data.user);
+        //user.setUserInfo(data.user);
+        //TODO: get rid of React Context for User Info just use Apollo...
       }
     }
   }
