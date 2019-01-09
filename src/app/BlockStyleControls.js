@@ -36,9 +36,9 @@ const BlockStyleControls = (props) => {
     .getType();
   return (
     <div className="RichEditor-controls">
-      {BLOCK_TYPES.map(type => (
+      {BLOCK_TYPES.map((type, idx) => (
         <StyleButton
-          key={type.label}
+          key={`${type.label}_${idx}`}
           active={type.style === blockType}
           label={type.label}
           onToggle={props.onToggle}
