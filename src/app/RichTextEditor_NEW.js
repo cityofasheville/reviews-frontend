@@ -7,10 +7,14 @@ import {
   RichUtils,
   getDefaultKeyBinding,
   CompositeDecorator,
-  convertToRaw,
+  //convertToRaw,
 } from 'draft-js';
 import BlockStyleControls from 'app/BlockStyleControls';
 import InlineStyleControls from 'app/InlineStyleControls';
+import Icon from 'template/shared/Icon';
+import {
+  IM_LINK2,
+} from 'template/assets/iconConstants';
 
 function findLinkEntities(contentBlock, callback, contentState) {
   contentBlock.findEntityRanges(
@@ -66,15 +70,15 @@ class RichTextEditorNew extends React.Component {
     };
     this.focus = () => this.refs.editor.focus();
     this.onChange = editorState => this.setState({ editorState });
-    this.logState = () => {
-      const content = this.state.editorState.getCurrentContent();
-      console.log(convertToRaw(content));
-    };
+    // this.logState = () => {
+    //   const content = this.state.editorState.getCurrentContent();
+    //   console.log(convertToRaw(content));
+    // };
     this.promptForLink = this._promptForLink.bind(this);
     this.onURLChange = (e) => this.setState({urlValue: e.target.value});
     this.confirmLink = this._confirmLink.bind(this);
     this.onLinkInputKeyDown = this._onLinkInputKeyDown.bind(this);
-    // this.removeLink = this._removeLink.bind(this);
+    this.removeLink = this._removeLink.bind(this);
     this.handleKeyCommand = this._handleKeyCommand.bind(this);
     this.mapKeyToEditorCommand = this._mapKeyToEditorCommand.bind(this);
     this.toggleBlockType = this._toggleBlockType.bind(this);
@@ -86,22 +90,29 @@ class RichTextEditorNew extends React.Component {
     const { editorState } = this.state;
     const selection = editorState.getSelection();
     if (!selection.isCollapsed()) {
-      const contentState = editorState.getCurrentContent();
-      const startKey = editorState.getSelection().getStartKey();
-      const startOffset = editorState.getSelection().getStartOffset();
-      const blockWithLinkAtBeginning = contentState.getBlockForKey(startKey);
-      const linkKey = blockWithLinkAtBeginning.getEntityAt(startOffset);
-      let url = '';
-      if (linkKey) {
-        const linkInstance = contentState.getEntity(linkKey);
-        url = linkInstance.getData().url;
+      if (this.state.showURLInput) {
+        this.setState({
+          showURLInput: false,
+          urlValue: '',
+        });
+      } else {
+        const contentState = editorState.getCurrentContent();
+        const startKey = editorState.getSelection().getStartKey();
+        const startOffset = editorState.getSelection().getStartOffset();
+        const blockWithLinkAtBeginning = contentState.getBlockForKey(startKey);
+        const linkKey = blockWithLinkAtBeginning.getEntityAt(startOffset);
+        let url = '';
+        if (linkKey) {
+          const linkInstance = contentState.getEntity(linkKey);
+          url = linkInstance.getData().url;
+        }
+        this.setState({
+          showURLInput: true,
+          urlValue: url,
+        }, () => {
+          setTimeout(() => this.refs.url.focus(), 0);
+        });
       }
-      this.setState({
-        showURLInput: true,
-        urlValue: url,
-      }, () => {
-        setTimeout(() => this.refs.url.focus(), 0);
-      });
     }
   }
 
@@ -116,17 +127,25 @@ class RichTextEditorNew extends React.Component {
     );
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
     const newEditorState = EditorState.set(editorState, { currentContent: contentStateWithEntity });
-    this.setState({
-      editorState: RichUtils.toggleLink(
-        newEditorState,
-        newEditorState.getSelection(),
-        entityKey
-      ),
-      showURLInput: false,
-      urlValue: '',
-    }, () => {
-      setTimeout(() => this.refs.editor.focus(), 0);
-    });
+    if (urlValue === '') {
+      this.removeLink(e);
+      this.setState({
+        showURLInput: false,
+        urlValue: '',
+      });
+    } else {
+      this.setState({
+        editorState: RichUtils.toggleLink(
+          newEditorState,
+          newEditorState.getSelection(),
+          entityKey
+        ),
+        showURLInput: false,
+        urlValue: '',
+      }, () => {
+        setTimeout(() => this.refs.editor.focus(), 0);
+      });
+    }
   }
 
   _onLinkInputKeyDown(e) {
@@ -135,16 +154,16 @@ class RichTextEditorNew extends React.Component {
     }
   }
 
-  // _removeLink(e) {
-  //   e.preventDefault();
-  //   const { editorState } = this.state;
-  //   const selection = editorState.getSelection();
-  //   if (!selection.isCollapsed()) {
-  //     this.setState({
-  //       editorState: RichUtils.toggleLink(editorState, selection, null),
-  //     });
-  //   }
-  // }
+  _removeLink(e) {
+    e.preventDefault();
+    const { editorState } = this.state;
+    const selection = editorState.getSelection();
+    if (!selection.isCollapsed()) {
+      this.setState({
+        editorState: RichUtils.toggleLink(editorState, selection, null),
+      });
+    }
+  }
 
   _handleKeyCommand(command, editorState) {
     const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -195,7 +214,7 @@ class RichTextEditorNew extends React.Component {
     let urlInput;
     if (this.state.showURLInput) {
       urlInput = (
-        <div>
+        <span className="link-url-input">
           <input
             onChange={this.onURLChange}
             ref="url"
@@ -203,10 +222,10 @@ class RichTextEditorNew extends React.Component {
             value={this.state.urlValue}
             onKeyDown={this.onLinkInputKeyDown}
           />
-          <button onMouseDown={this.confirmLink}>
+          <button className="url-input-button" onMouseDown={this.confirmLink}>
             Confirm
           </button>
-        </div>
+        </span>
       );
     }
 
@@ -222,21 +241,6 @@ class RichTextEditorNew extends React.Component {
     }
     return (
       <div className="RichEditor-root">
-        <div style={{marginBottom: 10}}>
-          Select some text, then use the buttons to add or remove links
-          on the selected text.
-        </div>
-        <div>
-          <button
-            onMouseDown={this.promptForLink}
-            style={{marginRight: 10}}>
-            Add Link
-          </button>
-          {/* <button onMouseDown={this.removeLink}>
-            Remove Link
-          </button> */}
-        </div>
-        {urlInput}
         <InlineStyleControls
           editorState={editorState}
           onToggle={this.toggleInlineStyle}
@@ -245,6 +249,17 @@ class RichTextEditorNew extends React.Component {
           editorState={editorState}
           onToggle={this.toggleBlockType}
         />
+        <span
+          className={this.state.showURLInput ? 'link-url-button active' : 'link-url-button'}
+          onMouseDown={this.promptForLink}
+          title="First you must select some text, then you can create a link."
+        >
+          <Icon path={IM_LINK2} size={14} />
+        </span>
+        {/* <button onMouseDown={this.removeLink}>
+          Remove Link
+        </button> */}
+        {urlInput}        
         <div className={className} onClick={this.focus}>
           <Editor
             blockStyleFn={getBlockStyle}
@@ -258,11 +273,11 @@ class RichTextEditorNew extends React.Component {
             spellCheck={true}
           />
         </div>
-        <input
+        {/* <input
           onClick={this.logState}
           type="button"
           value="Log State"
-        />
+        /> */}
       </div>
     );
   }

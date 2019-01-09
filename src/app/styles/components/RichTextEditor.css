@@ -97,3 +97,35 @@
   background-color: #004a87;
   color: white;
 }
+
+.RichEditor-root .link-url-button {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 4px;
+  float: left;
+  color: #999;
+}
+
+.RichEditor-root .link-url-button.active {
+  color: white;
+  background-color: #004a87;
+}
+
+.RichEditor-root .link-url-input {
+  float: left;
+}
+
+.RichEditor-root .link-url-input input:focus {
+  outline: none;
+  border: 2px solid #1faff5;
+}
+
+.RichEditor-root .url-input-button {
+  color: white;
+  background: #1faff5;
+  border: none;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  height: 26px;
+}
