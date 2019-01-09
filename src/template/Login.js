@@ -7,7 +7,7 @@ import queryString from 'query-string';
 import { Mutation, graphql } from 'react-apollo';
 import { withRouter } from 'react-router-dom';
 import RegisterCode from 'template/RegisterCode';
-import { withUser } from 'template/UserContext';
+import { GET_USER_INFO } from 'template/Queries';
 import Error from 'template/shared/Error';
 import LoadingAnimation from 'template/shared/LoadingAnimation';
 
@@ -21,22 +21,6 @@ const REGISTER_CODE = gql`
   }
 `;
 
-const GET_USER_INFO = gql`
-  query user {
-    user {
-      id,
-      name,
-      email,
-      position,
-      department,
-      division,
-      supervisor_id,
-      supervisor,
-      supervisor_email,
-    }
-  }
-`;
-
 class Login extends React.Component {
   constructor(props) {
     super(props);
@@ -45,13 +29,6 @@ class Login extends React.Component {
       message: 'No message',
       fail: false,
     };
-  }
-
-  async setUserInfo(userInfo) {
-    const {
-      user,
-    } = this.props;
-    await user.setUserInfo(userInfo);
   }
 
   render() {
@@ -76,9 +53,7 @@ class Login extends React.Component {
             fail: !data.registerCode.loggedIn,
           }, () => {
             const { isLoggedIn } = this.state;
-            const { userInfo } = this.props;
             if (isLoggedIn) {
-              this.setUserInfo(userInfo.user);
               localStorage.setItem('loggedIn', true);
               const priorPath = localStorage.getItem('preLoginPathname');
               if (priorPath) {
@@ -125,4 +100,4 @@ class Login extends React.Component {
   }
 }
 
-export default withRouter(withUser(graphql(GET_USER_INFO, { name: 'userInfo' })(Login)));
+export default withRouter(graphql(GET_USER_INFO, { name: 'userInfo' })(Login));

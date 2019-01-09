@@ -30,4 +30,4 @@ const AppTitle = (props) => {
   );
 };
 
-export default (withLanguage(AppTitle));
+export default withLanguage(AppTitle);
