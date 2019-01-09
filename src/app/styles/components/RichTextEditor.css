@@ -11,6 +11,7 @@
   cursor: text;
   font-size: 16px;
   margin-top: 10px;
+  clear: both;
 }
 
 .RichEditor-editor .public-DraftEditorPlaceholder-root,
@@ -48,6 +49,7 @@
   font-size: 14px;
   margin-bottom: 5px;
   user-select: none;
+  float: left;
 }
 
 .RichEditor-styleButton {
@@ -56,6 +58,11 @@
   margin-right: 2px;
   padding: 2px 0;
   display: inline-block;
+  border: 1px solid transparent;
+}
+
+.RichEditor-styleButton:hover {
+  border: 1px solid #dddddd;
 }
 
 .RichEditor-styleButton.bold {
@@ -72,6 +79,18 @@
 
 .RichEditor-styleButton.underline {
   text-decoration: underline;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.RichEditor-styleButton.bullet-list {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.RichEditor-styleButton.numbered-list {
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .RichEditor-activeButton {

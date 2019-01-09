@@ -10,14 +10,14 @@ class StyleButton extends React.Component {
   }
 
   render() {
-    const { active, label, styleClass } = this.props;
+    const { active, label, styleClass, title } = this.props;
     let className = 'RichEditor-styleButton';
     if (active) {
       className += ' RichEditor-activeButton';
     }
     className += ` ${styleClass}`;
     return (
-      <span className={className} onMouseDown={this.onToggle}>
+      <span className={className} onMouseDown={this.onToggle} title={title}>
         {label}
       </span>
     );

@@ -1,5 +1,10 @@
 import React from 'react';
 import StyleButton from 'app/StyleButton';
+import Icon from 'template/shared/Icon';
+import {
+  IM_LIST2,
+  IM_LIST_NUMBERED,
+} from 'template/assets/iconConstants';
 
 const BLOCK_TYPES = [
   // { label: 'H1', style: 'header-one' },
@@ -8,8 +13,18 @@ const BLOCK_TYPES = [
   // { label: 'H4', style: 'header-four' },
   // { label: 'H5', style: 'header-five' },
   // { label: 'H6', style: 'header-six' },
-  { label: 'Bullet list', style: 'unordered-list-item' },
-  { label: 'Numbered list', style: 'ordered-list-item' },
+  {
+    label: <Icon path={IM_LIST2} size={14} />,
+    style: 'unordered-list-item',
+    class: 'bullet-list',
+    title: 'Bullet list',
+  },
+  {
+    label: <Icon path={IM_LIST_NUMBERED} size={14} />,
+    style: 'ordered-list-item',
+    class: 'numbered-list',
+    title: 'Numbered list',
+  },
 ];
 
 const BlockStyleControls = (props) => {
@@ -28,6 +43,8 @@ const BlockStyleControls = (props) => {
           label={type.label}
           onToggle={props.onToggle}
           style={type.style}
+          styleClass={type.class}
+          title={type.title}
         />
       ))}
     </div>
