@@ -45,7 +45,7 @@ const AuthControl = (props) => {
     >
       {({ loading, error, data }) => {
         if (loading) return null;
-        if (error) return <Error message={error} />;
+        if (error) return <Error message={error.message} />;
         if (loggedIn) {
           return (
             <a href={config.logoutURL}>{getText(true, language.language)}</a>
