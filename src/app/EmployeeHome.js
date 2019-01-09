@@ -23,6 +23,7 @@ const GET_EMPLOYEE = gql`
 
 const EmployeeHome = (props) => {
   const { location } = props;
+  console.log(props);
   return (
     <Query
       query={GET_EMPLOYEE}
