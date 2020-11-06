@@ -2,11 +2,13 @@ version: 2.1
 
 orbs:
   aws-s3: circleci/aws-s3@1.0.15
+defaults: &defaults
+  docker:
+    - image: 'cimg/python:3.6'
 
 jobs:
   dev:
-    docker:
-      - image: 'cimg/python:3.6'
+    <<: *defaults
     steps:
       - checkout
       - aws-s3/sync:
@@ -20,8 +22,7 @@ jobs:
             --acl public-read \
             --cache-control "max-age=0"
   prod:
-    docker:
-      - image: 'cimg/python:3.6'
+    <<: *defaults
     steps:
       - checkout
       - aws-s3/sync:
@@ -35,7 +36,6 @@ jobs:
             --acl public-read \
             --cache-control "max-age=0"
 workflows:
-  version: 2
   deploy:
     jobs:
       - dev:
@@ -46,10 +46,12 @@ workflows:
       - approval:
           type: approval
           filters:
-            only: main
+            branches:
+              only: main
       - prod:
-          requires: approval
           filters:
             branches:
               only:  main
           context: reviews-frontend-production
+          requires:
+            - approval
