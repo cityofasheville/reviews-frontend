@@ -4,18 +4,32 @@ orbs:
   aws-s3: circleci/aws-s3@1.0.15
 defaults: &defaults
   docker:
-    - image: 'cimg/python:3.6'
+    - image: 'circleci/node:12.9.1-browsers'
 
 jobs:
   dev:
     <<: *defaults
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+            - ~/.npm
+            - ~/.cache
+          key: v1-dependencies-{{ checksum "package.json" }}
+          
+      - run: npm run build
       - aws-s3/sync:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_DEFAULT_REGION
-          from: ./
+          from: ./build
           to: 's3://${S3_DEPLOY_BUCKET}'
           overwrite: true
           arguments: |
