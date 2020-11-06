@@ -1,0 +1,57 @@
+version: 2.1
+
+orbs:
+  aws-s3: circleci/aws-s3@1.0.15
+defaults: &defaults
+  docker:
+    - image: 'cimg/python:3.6'
+
+jobs:
+  dev:
+    <<: *defaults
+    steps:
+      - checkout
+      - aws-s3/sync:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_DEFAULT_REGION
+          from: ./
+          to: 's3://${S3_DEPLOY_BUCKET}'
+          overwrite: true
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=0"
+  prod:
+    <<: *defaults
+    steps:
+      - checkout
+      - aws-s3/sync:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_DEFAULT_REGION
+          from: ./
+          to: 's3://${S3_DEPLOY_BUCKET}'
+          overwrite: true
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=0"
+workflows:
+  deploy:
+    jobs:
+      - dev:
+          filters:
+            branches:
+              only: development
+          context: reviews-frontend-development
+      - approval:
+          type: approval
+          filters:
+            branches:
+              only: main
+      - prod:
+          filters:
+            branches:
+              only:  main
+          context: reviews-frontend-production
+          requires:
+            - approval
