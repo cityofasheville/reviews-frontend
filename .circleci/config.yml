@@ -5,11 +5,15 @@ orbs:
 defaults: &defaults
   docker:
     - image: 'circleci/node:12.18'
+  working_directory: ~/
+  environment:
+    BUILD_DIR: ~/build
 
 jobs:
   dev:
     <<: *defaults
     steps:
+      - checkout
       - aws-s3/sync:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
