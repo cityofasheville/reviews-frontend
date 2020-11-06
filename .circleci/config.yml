@@ -28,7 +28,7 @@ workflows:
           filters:
             branches:
               only: development
-          context: reviews-development
+          context: reviews-frontend-development
   deploy-production:
     jobs:
       - approval:
@@ -40,4 +40,4 @@ workflows:
           filters:
             branches:
               only:  main
-          context: reviews-production
+          context: reviews-frontend-production
