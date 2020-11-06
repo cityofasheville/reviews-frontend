@@ -135,9 +135,9 @@ const employeeShape = {
   periodEnd: PropTypes.string,
   reviewer_name: PropTypes.string,
   employee_name: PropTypes.string,
-  employees: PropTypes.arrayOf(
+ /* employees: PropTypes.arrayOf(
     PropTypes.shape(employeeShape) // eslint-disable-line no-use-before-define
-  ),
+  ),*/
   reviews: PropTypes.arrayOf(PropTypes.shape(reviewShape)),
 };
 

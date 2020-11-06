@@ -114,7 +114,7 @@ class Review extends React.Component {
       role: review.employee_id === userId // eslint-disable-line no-nested-ternary
         ? 'Employee'
         : (userId === review.supervisor_id
-          ? 'Supervisor'
+          ? 'Supervisor' //TODO: implement the current supervisor stuff
           : 'Viewer'),
       answersEditable: review.status === 'Open' && role === 'Supervisor',
       responsesEditable: review.status === 'Ready' && role === 'Employee',
@@ -647,7 +647,7 @@ class Review extends React.Component {
                                 <label>
                                   <Radio value="Open" />
                                   Re-open
-                                </label>                          
+                                </label>
                                 <label>
                                   <Radio value="Closed" />
                                   Submit to HR record
@@ -696,7 +696,7 @@ class Review extends React.Component {
                                 <label>
                                   <Radio value="Open" />
                                   Further discussion requested
-                                </label>                          
+                                </label>
                               </RadioGroup>
                               <div
                                 className="alert alert-success alert-sm"
@@ -750,7 +750,7 @@ class Review extends React.Component {
                   <Link
                     style={{ fontSize: '20px' }}
                     to={{
-                      pathname: '/', 
+                      pathname: '/',
                       search: `?emp=${review.employee_id}&mode=check-ins`,
                     }}
                   >
