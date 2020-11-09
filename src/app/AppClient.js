@@ -5,8 +5,8 @@ Configure your apollo client in this file.
 import ApolloClient from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { createHttpLink } from 'apollo-link-http';
-let SERVER_URL='http://localhost:4000/graphql';
-//let SERVER_URL = 'https://coa-converse-api.ashevillenc.gov/graphql';
+//let SERVER_URL='http://localhost:4000/graphql';
+let SERVER_URL = 'https://coa-converse-api.ashevillenc.gov/graphql';
 if (window.location.origin.indexOf('dev-check-in') > -1
   || process.env.REACT_APP_USE_DEV_API === 'true') {
   SERVER_URL = 'https://dev-coa-converse-api.ashevillenc.gov/graphql';
