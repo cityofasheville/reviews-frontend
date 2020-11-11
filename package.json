@@ -8,7 +8,6 @@
     "apollo-link-http": "^1.5.15",
     "draft-js": "^0.11.7",
     "fibers": "^5.0.0",
-    "fsevents": "^2.1.3",
     "graphql": "^14.4.2",
     "graphql-tag": "^2.9.2",
     "moment": "^2.22.2",
