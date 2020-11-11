@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   aws-s3: circleci/aws-s3@1.0.15
+  node: circleci/node@4.1.0
 defaults: &defaults
   docker:
     - image: 'circleci/node:12.18'
@@ -11,8 +12,10 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - npm install
-      - npm run build
+      - node/install-packages:
+          cache-path: ~project/node_modules
+          override-ci-command: npm install
+      - run: npm run build
       - aws-s3/sync:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
@@ -27,6 +30,11 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - node/install-packages:
+          cache-path: ~project/node_modules
+          override-ci-command: npm install
+      - run: npm run build
+
       - aws-s3/sync:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
