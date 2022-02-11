@@ -12,7 +12,7 @@
     "graphql": "^14.4.2",
     "graphql-tag": "^2.9.2",
     "moment": "^2.22.2",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "prop-types": "^15.6.2",
     "query-string": "5",
     "react": "^16.4.2",
